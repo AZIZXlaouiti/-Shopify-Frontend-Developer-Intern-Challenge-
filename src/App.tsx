@@ -43,7 +43,9 @@ export default function App() {
   }, [])
   const [photo, setPhoto] = useState<any | []>([])
   const [connected, setConnected] = useState(false);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<any>({});
+
+  console.log('ative list' , active)
   return (
     <Page
       title=" "
@@ -66,16 +68,22 @@ export default function App() {
           <div className="posts">
 
             {
-              photo.map(({ date, explanation, title, url }: any) => {
+              photo.map(({ date, explanation, title, url }:any,i: number,) => {
                 return <>
                   <article
                     className="post"
+                    key={i}
                   >
                     <div className="post__header">
                       <div className="post__profile">
                         {title}
                       </div>
-                      <div onClick={()=>setActive(!active)} className={`like-heart-btn  ${active?'active':''}`} >
+                      <div  className={`like-heart-btn  ${`${i}` in active?'active':''}`} 
+                        onClick={()=>setActive({
+                          ...active ,
+                          [i]:i
+                        })}
+                      >
                           <svg className="like-heart" viewBox="0 0 511.626 511.626" xmlns="http://www.w3.org/2000/svg">
                           <path className="heart-fill" d="M475.366,71.951c-24.175-23.606-57.575-35.404-100.215-35.404c-11.8,0-23.843,2.046-36.117,6.136
                           c-12.279,4.093-23.702,9.615-34.256,16.562c-10.568,6.945-19.65,13.467-27.269,19.556c-7.61,6.091-14.845,12.564-21.696,19.414
