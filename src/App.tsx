@@ -45,6 +45,12 @@ export default function App() {
   const [connected, setConnected] = useState(false);
   const [active, setActive] = useState<any>({});
 
+  function handleUnselect(i:number) :void{
+    delete active[i] 
+    setActive({
+      ...active
+    })
+  }
   console.log('ative list' , active)
   return (
     <Page
@@ -79,10 +85,13 @@ export default function App() {
                         {title}
                       </div>
                       <div  className={`like-heart-btn  ${`${i}` in active?'active':''}`} 
-                        onClick={()=>setActive({
+                        onClick={()=> `${i}` in active ? 
+                         handleUnselect(i)
+                        : setActive({
                           ...active ,
                           [i]:i
-                        })}
+                        })
+                      }
                       >
                           <svg className="like-heart" viewBox="0 0 511.626 511.626" xmlns="http://www.w3.org/2000/svg">
                           <path className="heart-fill" d="M475.366,71.951c-24.175-23.606-57.575-35.404-100.215-35.404c-11.8,0-23.843,2.046-36.117,6.136
