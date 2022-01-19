@@ -25,19 +25,27 @@ import { formatDate } from 'jquery';
 import { ImportMinor } from '@shopify/polaris-icons';
 import date from './format';
 import axios from 'axios';
+import { TypeOfTag } from 'typescript';
 interface AccountProps {
   onAction(): void;
 }
 
 export default function App() {
   const API_KEY = process.env.REACT_APP_API_KEY
+  const [dayRange , setDayRange] = useState<string[]>(['2016-03-03', '2016-04-03'])
+  const [photo, setPhoto] = useState<any | []>([])
+  const [connected, setConnected] = useState(false);
+  const [active, setActive] = useState<any>({});
+
   useEffect(() => {
     axios.get(
       'https://api.nasa.gov/planetary/apod',
       {
         params: {
-          count: 10,
-          'api_key': API_KEY
+          
+          'api_key': API_KEY,
+          'start_date':dayRange[0],
+          'end_date':dayRange[1]
         }
       }
     ).then(data => {
@@ -45,19 +53,21 @@ export default function App() {
       setConnected(!connected)
 
     })
-  }, [])
-  const [photo, setPhoto] = useState<any | []>([])
-  const [connected, setConnected] = useState(false);
-  const [active, setActive] = useState<any>({});
 
+
+  }, [dayRange.length])
+  function handleUpdate(e:typeof dayRange):void{
+    setDayRange(e)
+    console.log(e)
+    }
   function handleUnselect(i:number) :void{
     delete active[i] 
     setActive({
       ...active
     })
-  }
-  const dayRange:string[] = []
-
+   }
+ 
+  console.log('i rendered ')
   return (
     <Page
       title=" "
@@ -73,8 +83,9 @@ export default function App() {
                   e?.forEach(e=>{
                     dayRange.push(dateFormat(e ,"isoDate"))
                   })
-                  console.log(dayRange)
-                }}
+                  handleUpdate(dayRange)
+                }
+              }
                 />
             <button className="header__theme-button" title="Toggle Theme">
              <img src='' />
