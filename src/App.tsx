@@ -26,7 +26,6 @@ interface AccountProps {
 export default function App() {
   const API_KEY = process.env.REACT_APP_API_KEY
   const [first, setFirst] = useState('');
-  // console.log(API_KEY)
   useEffect(() => {
     axios.get(
       'https://api.nasa.gov/planetary/apod',
@@ -43,44 +42,8 @@ export default function App() {
     })
   }, [])
   const [photo, setPhoto] = useState<any | []>([])
-  const [last, setLast] = useState('');
-  const [email, setEmail] = useState('');
-  const [checkboxes, setCheckboxes] = useState([]);
   const [connected, setConnected] = useState(false);
-  console.log(photo)
-  const handleFirstChange = useCallback((value) => setFirst(value), []);
-  const handleLastChange = useCallback((value) => setLast(value), []);
-  const handleEmailChange = useCallback((value) => setEmail(value), []);
-  const handleCheckboxesChange = useCallback(
-    (value) => setCheckboxes(value),
-    [],
-  );
-
-  const toggleConnection = useCallback(() => {
-    setConnected(!connected);
-  }, [connected]);
-
-  const breadcrumbs = [
-    { content: 'Sample apps', url: '/sample-apps' },
-    { content: 'Create React App', url: '/create-react-app' },
-  ];
-  const primaryAction = { content: 'New product' };
-  const secondaryActions = [{ content: 'Import', icon: ImportMinor }];
-
-  const choiceListItems = [
-    { label: 'I accept the Terms of Service', value: 'false' },
-    { label: 'I consent to receiving emails', value: 'false2' },
-  ];
-
-  const accountSectionDescription = connected
-    ? 'Disconnect your account from your Shopify store.'
-    : 'Connect your account to your Shopify store.';
-
-
-
   return (
-
-
     <Page
       title=" "
 
