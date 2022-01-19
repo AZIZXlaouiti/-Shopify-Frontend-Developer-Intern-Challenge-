@@ -1,34 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import * as $ from 'jquery';
 import {
-  Layout,
   Page,
-  FooterHelp,
-  Card,
-  Link,
-  Button,
-  FormLayout,
-  TextField,
-  AccountConnection,
-  ChoiceList,
-  SettingToggle,
-  Image,
-  Heading,
-  MediaCard,
-  Caption
 } from '@shopify/polaris';
 import './App.css'
 import "rsuite/dist/rsuite.min.css";
 import { DateRangePicker } from 'rsuite';
 import dateFormat, { masks } from "dateformat";
-import { formatDate } from 'jquery';
-import { ImportMinor } from '@shopify/polaris-icons';
-import date from './format';
 import axios from 'axios';
-import { TypeOfTag } from 'typescript';
-interface AccountProps {
-  onAction(): void;
-}
+
 
 export default function App() {
   const API_KEY = process.env.REACT_APP_API_KEY
