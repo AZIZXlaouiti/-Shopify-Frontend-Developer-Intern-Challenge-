@@ -82,16 +82,14 @@ export default function App() {
 
 
     <Page
-      title="Polaris"
-      breadcrumbs={breadcrumbs}
-      primaryAction={primaryAction}
-      secondaryActions={secondaryActions}
+      title=" "
+
     >
       <header className="header">
         <nav className="header__content">
           <div className="header__buttons">
             <button className="header__theme-button" title="Toggle Theme">
-             <img src='https://000048483.codepen.website/images/nasa-logo.png' />
+             <img src='' />
                 </button>
                 </div>
                 </nav>
