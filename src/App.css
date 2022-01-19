@@ -978,3 +978,93 @@ img {
   text-decoration: none;
   color: #333333;
 }
+.like-heart-btn {
+  display: inline-block;
+  font-size: 0;
+}
+
+.like-heart {
+  cursor: pointer;
+  /* padding: 13px; */
+  width: 24px;
+  transition: all .3s;
+  transform-origin: center;
+  padding: 3px 2px 0px 0px;
+}
+
+.like-heart:hover {
+  transform: scale(1.2);
+}
+
+.active > .like-heart {
+  animation: animateHeart .3s linear forwards;
+}
+
+.like-heart .heart-fill {
+  fill: #b1b5bb;
+}
+
+.like-heart:hover .heart-fill {
+  fill: #8d9399;
+}
+
+.like-heart .heart-outline {
+  fill: white;
+}
+
+.active > .like-heart .heart-fill,
+.active > .like-heart .heart-outline{
+  fill: #ff3c49;
+}
+
+
+.like-button-btn {
+  display: inline-block;
+  border: 2px solid #ff3c49;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 0;
+}
+
+.like-button {
+  cursor: pointer;
+  padding: 11px;
+  width: 24px;
+  transition: all .3s;
+  transform-origin: center;
+}
+
+.like-button:hover {
+  background-color: #ffeaeb;
+}
+
+.active > .like-button {
+  animation: animateHeart .3s linear forwards;
+}
+
+.like-button .heart-fill {
+  fill: white;
+}
+
+.like-button:hover .heart-fill {
+  fill: #ffeaeb;
+  transform: scale(1.2);
+}
+.active > .like-button:hover .heart-fill {
+  transform: none;
+}
+
+.like-button .heart-outline {
+  fill: #ff3c49;
+}
+
+.active > .like-button .heart-fill {
+  fill: #ff3c49;
+}
+
+
+@keyframes animateHeart{
+  0%{transform:scale(.2);}
+  40%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
