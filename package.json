@@ -17,6 +17,7 @@
     "axios": "^0.25.0",
     "dateformat": "^5.0.2",
     "dotenv": "^14.2.0",
+    "express": "^4.17.2",
     "jquery": "^3.6.0",
     "react": "^17.0.2",
     "react-date-range": "^1.4.0",
@@ -29,10 +30,11 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+    
   },
   "eslintConfig": {
     "extends": [
