@@ -11,10 +11,11 @@ import axios from 'axios';
 
 export default function App() {
   const API_KEY = process.env.REACT_APP_API_KEY
-  const [dayRange , setDayRange] = useState<string[]>(['2016-03-03', '2016-04-03'])
+  const [dayRange , setDayRange] = useState<string[]>(['2016-03-03', '2016-04-03']) // using default settings
   const [photo, setPhoto] = useState<any | []>([])
   const [connected, setConnected] = useState(false);
-  const [active, setActive] = useState<any>({});
+  const data = localStorage.getItem('likes')?JSON.parse(localStorage.getItem('likes')!):{}
+  const [active, setActive] = useState<any>(data);
 
   useEffect(() => {
    fetchData()
@@ -40,19 +41,19 @@ export default function App() {
   function handleUpdate(e:typeof dayRange):void{
     setDayRange(e)
     }
-  function handleUnselect(i:number) :void{
+  function handleUnselect(i:string) :void{
     delete active[i] 
     setActive({
       ...active
     })
    }
-  function handleSelect(i:number):void{
+  function handleSelect(i:string):void{
     setActive({
       ...active ,
-      [i]:i
+      [i]:1
     })
   }
-  localStorage.setItem('like' ,JSON.stringify(active) )
+  localStorage.setItem('likes' ,JSON.stringify(active) )
   return (
     <Page
       title=" "
@@ -102,10 +103,10 @@ export default function App() {
                       <div className="post__profile">
                         {title}
                       </div>
-                      <div  className={`like-heart-btn  ${`${i}` in active?'active':''}`} 
-                        onClick={()=> `${i}` in active 
-                          ? handleUnselect(i)
-                          : handleSelect(i)
+                      <div  className={`like-heart-btn  ${`${url}` in active?'active':''}`} 
+                        onClick={()=> `${url}` in active 
+                          ? handleUnselect(url)
+                          : handleSelect(url)
                           
                       }
                       >
